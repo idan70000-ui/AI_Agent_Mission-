@@ -26,34 +26,47 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>סוכן חקירת תקלות</h1>
-        <p className={styles.subtitle}>The Barrel — מערכת ניטור שירות</p>
+      <div className={styles.hero}>
+        <div className={styles.barrel}>🛢️</div>
+        <h1 className={styles.title}>THE BARREL</h1>
+        <p className={styles.tagline}>חנות משקאות חריפים פרימיום</p>
+        <div className={styles.divider}>
+          <span>🥃</span>
+          <div className={styles.line} />
+          <span>🍷</span>
+          <div className={styles.line} />
+          <span>🍾</span>
+        </div>
+        <p className={styles.subtitle}>מערכת ניטור ואבחון שירות</p>
       </div>
 
       <button className={styles.button} onClick={investigate} disabled={loading}>
-        {loading ? (
-          <span className={styles.loading}>חוקר את השירות...</span>
-        ) : (
-          '🔍 חקור'
-        )}
+        {loading ? '⏳ חוקר את השירות...' : '🔍 חקור'}
       </button>
 
       {error && (
         <div className={styles.error}>
-          <strong>שגיאה:</strong> {error}
+          <span>⚠️</span> {error}
         </div>
       )}
 
       {report && (
         <div className={styles.report}>
-          <div className={styles.reportHeader}>דוח חקירה</div>
+          <div className={styles.reportHeader}>
+            <span>📋</span> דוח חקירה
+          </div>
           <pre className={styles.output}>{report.output}</pre>
           <div className={styles.timestamp}>
-            {new Date(report.createdAt).toLocaleString('he-IL')}
+            🕐 {new Date(report.createdAt).toLocaleString('he-IL')}
           </div>
         </div>
       )}
+
+      <footer className={styles.footer}>
+        <span>🛢️ The Barrel</span>
+        <span>·</span>
+        <span>Whisky · Vodka · Gin · Rum</span>
+      </footer>
     </main>
   );
 }

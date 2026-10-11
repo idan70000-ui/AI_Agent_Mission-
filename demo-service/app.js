@@ -1,11 +1,14 @@
 import express from 'express';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 const app = express();
 const PORT = 3010;
 const SCENARIO = process.env.SCENARIO || 'normal';
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json());
-app.use(express.static('demo-service/public'));
+app.use(express.static(join(__dirname, 'public')));
 
 
 const logs = [];

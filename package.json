@@ -4,13 +4,13 @@
   "description": "AI agent that investigates service failures",
   "type": "module",
   "scripts": {
-    "service": "node demo-service/server.js",
-    "agent": "node ops-Agent/server.js",
+    "service": "node demo-service/app.js",
+    "agent": "cd ops-Agent && npm run dev",
     "dev": "concurrently \"npm run service\" \"npm run agent\"",
-    "dev:db_down": "cross-env SCENARIO=db_down npm run dev",
-    "dev:slow": "cross-env SCENARIO=slow_response npm run dev",
-    "dev:external_down": "cross-env SCENARIO=external_service_down npm run dev",
-    "dev:memory_leak": "cross-env SCENARIO=memory_leak npm run dev"
+    "dev:db_down": "cross-env SCENARIO=db_down npm run service",
+    "dev:slow": "cross-env SCENARIO=slow_response npm run service",
+    "dev:external_down": "cross-env SCENARIO=external_service_down npm run service",
+    "dev:memory_leak": "cross-env SCENARIO=memory_leak npm run service"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.52.0",
