@@ -1,0 +1,142 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0f0d0a;
+  color: #e8d9b5;
+  min-height: 100vh;
+}
+
+header {
+  background: linear-gradient(135deg, #1a1208 0%, #2d1f0a 100%);
+  border-bottom: 1px solid #c9a84c33;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c9a84c;
+  letter-spacing: 2px;
+}
+
+.logo span { color: #e8d9b5; font-weight: 300; }
+
+#status-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: #1a3a1a;
+  color: #4caf50;
+  border: 1px solid #4caf5055;
+}
+
+#status-badge.degraded {
+  background: #3a2a0a;
+  color: #f0a500;
+  border-color: #f0a50055;
+}
+
+#status-badge.error {
+  background: #3a0a0a;
+  color: #f44336;
+  border-color: #f4433655;
+}
+
+.hero {
+  text-align: center;
+  padding: 64px 24px 48px;
+  background: radial-gradient(ellipse at top, #2d1f0a22 0%, transparent 70%);
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+  color: #c9a84c;
+  margin-bottom: 12px;
+}
+
+.hero p { color: #9a8a6a; font-size: 1.1rem; }
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  margin: 24px auto;
+}
+
+.products-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  color: #9a8a6a;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: #1a1208;
+  border: 1px solid #c9a84c22;
+  border-radius: 12px;
+  padding: 28px 24px;
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: default;
+}
+
+.card:hover { transform: translateY(-4px); border-color: #c9a84c66; }
+
+.card-category {
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin-bottom: 10px;
+}
+
+.card-name {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #e8d9b5;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #c9a84c1a;
+}
+
+.price { font-size: 1.3rem; font-weight: 700; color: #c9a84c; }
+.price span { font-size: 0.8rem; font-weight: 400; }
+.stock { font-size: 0.78rem; color: #9a8a6a; }
+
+.error-banner {
+  background: #3a0a0a;
+  border: 1px solid #f4433644;
+  color: #f44336;
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.loading { text-align: center; padding: 60px; color: #9a8a6a; font-size: 1rem; }

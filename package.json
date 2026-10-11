@@ -1,0 +1,26 @@
+{
+  "name": "agent-ai-mission",
+  "version": "1.0.0",
+  "description": "AI agent that investigates service failures",
+  "type": "module",
+  "scripts": {
+    "service": "node demo-service/server.js",
+    "agent": "node ops-Agent/server.js",
+    "dev": "concurrently \"npm run service\" \"npm run agent\"",
+    "dev:db_down": "cross-env SCENARIO=db_down npm run dev",
+    "dev:slow": "cross-env SCENARIO=slow_response npm run dev",
+    "dev:external_down": "cross-env SCENARIO=external_service_down npm run dev",
+    "dev:memory_leak": "cross-env SCENARIO=memory_leak npm run dev"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.52.0",
+    "@openai/agents": "^0.20.0",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "express": "^4.21.2",
+    "mongodb": "^7.7.0",
+    "openai": "^7.32.0",
+    "zod": "^4.6.6"
+  }
+}
