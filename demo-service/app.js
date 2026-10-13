@@ -4,7 +4,7 @@ import { dirname, join } from 'path';
 
 const app = express();
 const PORT = 3010;
-const SCENARIO = process.env.SCENARIO || 'payment_service_down';
+const SCENARIO = process.env.SCENARIO || 'slow_response';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use(express.json());
