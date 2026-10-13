@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Barrel — חנות משקאות חריפים</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <span class="logo">🛢️</span>
+      <h1>THE BARREL</h1>
+      <span id="status-badge" class="badge loading">בודק...</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="tagline">חנות משקאות חריפים פרימיום</p>
+      <div class="divider">🥃 &nbsp;·&nbsp; 🍷 &nbsp;·&nbsp; 🍾</div>
+    </section>
+
+    <section class="products" id="products">
+      <h2>המוצרים שלנו</h2>
+      <div class="grid" id="product-grid">
+        <div class="loading-text">טוען מוצרים...</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>🛢️ The Barrel</span>
+    <span>·</span>
+    <span>Whisky · Vodka · Gin · Rum</span>
+  </footer>
+
+  <script>
+    async function loadStatus() {
+      try {
+        const res = await fetch('/health');
+        const data = await res.json();
+        const badge = document.getElementById('status-badge');
+        badge.textContent = data.status === 'ok' ? '✅ פעיל' : '⚠️ ' + data.status;
+        badge.className = 'badge ' + (data.status === 'ok' ? 'ok' : 'degraded');
+      } catch {
+        const badge = document.getElementById('status-badge');
+        badge.textContent = '❌ לא זמין';
+        badge.className = 'badge error';
+      }
+    }
+
+    async function loadProducts() {
+      const grid = document.getElementById('product-grid');
+      try {
+        const res = await fetch('/products');
+        if (!res.ok) {
+          const err = await res.json();
+          grid.innerHTML = `<div class="error-card">⚠️ ${err.error}</div>`;
+          return;
+        }
+        const data = await res.json();
+        grid.innerHTML = data.products.map(p => `
+          <div class="product-card">
+            <div class="product-icon">${categoryIcon(p.category)}</div>
+            <h3>${p.name}</h3>
+            <p class="category">${p.category}</p>
+            <p class="price">₪${p.price}</p>
+            <p class="stock">במלאי: ${p.stock}</p>
+          </div>
+        `).join('');
+      } catch {
+        grid.innerHTML = `<div class="error-card">❌ שגיאה בטעינת המוצרים</div>`;
+      }
+    }
+
+    function categoryIcon(cat) {
+      const icons = { whisky: '🥃', vodka: '🍸', gin: '🍹', rum: '🍺' };
+      return icons[cat] || '🍾';
+    }
+
+    loadStatus();
+    loadProducts();
+  </script>
+</body>
+</html>
